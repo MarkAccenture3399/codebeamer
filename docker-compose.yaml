@@ -11,7 +11,6 @@ version: '2.1'
 services:
   codebeamer-db:
     image: codebeameracr.azurecr.io/codebeamer-db
-    build: intland/mysql:debian-8.0.23-utf8mb4
     environment:
       - MYSQL_USER=user
       - MYSQL_PASSWORD=pass
@@ -27,7 +26,6 @@ services:
 
   codebeamer-app:
     image: codebeameracr.azurecr.io/codebeamer-app
-    build: intland/codebeamer:21.09-lts
     ports:
       - 9000:8090
     environment:
