@@ -32,7 +32,7 @@ Log in to container registry
 az acr login --name codebeamerACR
 
 If tenant not found
-az login --tenant 2f075e73-4163-45e2-a1a9-b702c43b8701
+az login --tenant <tenant_id>
 
 Push images to container registry
 docker-compose push
