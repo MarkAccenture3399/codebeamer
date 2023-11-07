@@ -36,3 +36,20 @@ az login --tenant <tenant_id>
 
 Push images to container registry
 docker-compose push
+
+Deploy Codebeamer instances to Azure
+
+V1 - ACI
+Create Azure context. This context associates Docker with an Azure subscription and resource group 
+docker login azure --tenant-id 2f075e73-4163-45e2-a1a9-b702c43b8701
+docker context create aci codebeamer_aci_context
+
+View current context
+docker context ls
+
+Deploy application to Azure Container Instances
+docker context use codebeamer_aci_context
+
+Use _docker-compose.yaml file
+docker compose up
+
