@@ -21,7 +21,7 @@ services:
       - MYSQL_INNODB_LOG_FILE_SIZE=256M
       - MYSQL_INNODB_LOG_BUFFER_SIZE=256M
     volumes:
-      - codebeamer-db-data:/var/lib/mysql
+      - C:\codebeamer\codebeamer-db-data:/var/lib/mysql
     ports:
       - "3306:3306"  # Expose the MySQL port to the outside
 
@@ -44,11 +44,11 @@ services:
       - JVM_OPTIONS= -Djdk.tls.ephemeralDHKeySize=4096
     volumes:
       - ./ssl/keystore.p12:/home/appuser/ssl/keystore.p12
-      - codebeamer-app-logo:/home/appuser/codebeamer/repository/config/logo
-      - codebeamer-app-repository-docs:/home/appuser/codebeamer/repository/docs
-      - codebeamer-app-repository-search:/home/appuser/codebeamer/repository/search
-      - codebeamer-app-logs:/home/appuser/codebeamer/logs
-      - codebeamer-app-tmp:/home/appuser/codebeamer/tomcat/tmp
+      - C:\codebeamer\codebeamer-app-logo:/home/appuser/codebeamer/repository/config/logo
+      - C:\codebeamer\codebeamer-app-repository-docs:/home/appuser/codebeamer/repository/docs
+      - C:\codebeamer\codebeamer-app-repository-search:/home/appuser/codebeamer/repository/search
+      - C:\codebeamer\codebeamer-app-logs:/home/appuser/codebeamer/logs
+      - C:\codebeamer\codebeamer-app-tmp:/home/appuser/codebeamer/tomcat/tmp
     links:
       - codebeamer-db:container-mysql
 
