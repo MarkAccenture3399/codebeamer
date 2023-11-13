@@ -37,6 +37,10 @@ az login --tenant <tenant_id>
 Push images to container registry
 docker-compose push
 
+SysAdmin
+CodeBeamer is shipped with a default system administrator user with the name bond and 007 password. 
+https://codebeamer.com/cb/wiki/86294#section-Change+System+Administrator%27s+Name+and+Password
+
 Deploy Codebeamer instances to Azure
 
 V1 - ACI
@@ -52,4 +56,3 @@ docker context use codebeamer_aci_context
 
 Use _docker-compose.yaml file
 docker compose up
-
