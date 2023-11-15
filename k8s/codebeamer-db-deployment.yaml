@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: codebeamer-db
+  name: codebeamer-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: codebeamer-db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.network/codebeamer-default: "true"
+        io.kompose.service: codebeamer-db
+    spec:
+      containers:
+        - env:
+            - name: MYSQL_DATABASE
+              value: codebeamer
+            - name: MYSQL_INNODB_BUFFER_POOL_SIZE
+              value: 1G
+            - name: MYSQL_INNODB_LOG_BUFFER_SIZE
+              value: 256M
+            - name: MYSQL_INNODB_LOG_FILE_SIZE
+              value: 256M
+            - name: MYSQL_MAX_ALLOWED_PACKET
+              value: 1024M
+            - name: MYSQL_PASSWORD
+              value: pass
+            - name: MYSQL_ROOT_PASSWORD
+              value: password
+            - name: MYSQL_USER
+              value: user
+          image: intland/mysql:debian-8.0.23-utf8mb4
+          name: codebeamer-db
+          ports:
+            - containerPort: 3306
+              hostPort: 3306
+              protocol: TCP
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: codebeamer-db-mysql
+      restartPolicy: Always
+      volumes:
+        - name: codebeamer-db-mysql
+          persistentVolumeClaim:
+            claimName: codebeamer-db-mysql
+status: {}
