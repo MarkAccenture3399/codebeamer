@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: codebeamer-ingress
+spec:
+  rules:
+  - host: codebeamer-app.minikube.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: codebeamer-app
+            port: 
+              number: 9000
+  - host: codebeamer-db.minikube.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: codebeamer-db
+            port: 
+              number: 3306
