@@ -33,7 +33,7 @@ spec:
               value: ' -Djdk.tls.ephemeralDHKeySize=4096'
               # Replace the TOMCAT_CONNECTOR_KEYSTORE_FILE and TOMCAT_CONNECTOR_KEYSTORE_PASS with secret references?
             - name: TOMCAT_CONNECTOR_KEYSTORE_FILE
-              value: '/etc/ssl/keystore.p12'
+              value: '/etc/ssl/domain.p12'
             - name: TOMCAT_CONNECTOR_KEYSTORE_PASS
               value: 'Swqa1234!'           
             - name: WAIT_HOSTS
@@ -48,7 +48,7 @@ spec:
               protocol: TCP
           resources: {}
           volumeMounts:
-            - mountPath: /etc/ssl/keystore.p12  # The mount path
+            - mountPath: /etc/ssl/domain.p12  # The mount path
               name: codebeamer-app-keystore
             - mountPath: /home/appuser/codebeamer/repository/config/logo
               name: codebeamer-app-logo
@@ -67,7 +67,7 @@ spec:
             secretName: codebeamer-app-certificate-secret
             items:
               - key: domain.p12
-                path: keystore.p12
+                path: domain.p12
         - name: codebeamer-app-logo
           persistentVolumeClaim:
             claimName: codebeamer-app-logo
