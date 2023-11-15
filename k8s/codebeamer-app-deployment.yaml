@@ -20,7 +20,7 @@ spec:
       containers:
         - env:
             - name: CB_database_JDBC_ConnectionURL
-              value: jdbc:mysql://container-mysql:3306/codebeamer?autoReconnect=true&zeroDateTimeBehavior=convertToNull&emulateLocators=true&characterEncoding=UTF-8&useSSL=false
+              value: jdbc:mysql://codebeamer-db:3306/codebeamer?autoReconnect=true&zeroDateTimeBehavior=convertToNull&emulateLocators=true&characterEncoding=UTF-8&useSSL=false
             - name: CB_database_JDBC_Driver
               value: com.mysql.jdbc.Driver
             - name: CB_database_JDBC_Password
@@ -42,7 +42,7 @@ spec:
                   name: codebeamer-app-certificate-secret
                   key: domain.key              
             - name: WAIT_HOSTS
-              value: container-mysql:3306
+              value: codebeamer-db:3306
             - name: WAIT_HOSTS_TIMEOUT
               value: "120"
           image: intland/codebeamer:21.09-lts
