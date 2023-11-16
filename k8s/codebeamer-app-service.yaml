@@ -11,4 +11,4 @@ spec:
       targetPort: 8090
   selector:
     io.kompose.service: codebeamer-app
-  #type: LoadBalancer
+  type: LoadBalancer
