@@ -57,6 +57,8 @@ docker context use codebeamer_aci_context
 Use _docker-compose.yaml file
 docker compose up
 
+Note: Docker Compose's integration for ECS and ACI will be retired in November 2023. Learn more: https://docs.docker.com/go/compose-ecs-eol/
+
 V2 - AKS
 az aks install-cli
 set PATH=%PATH%;"C:\Users\laurean.gheorghiu\.azure-kubectl" 
