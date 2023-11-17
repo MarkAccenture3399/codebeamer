@@ -31,7 +31,6 @@ spec:
               value: user
             - name: JVM_OPTIONS
               value: ' -Djdk.tls.ephemeralDHKeySize=4096'
-              #Replace the TOMCAT_CONNECTOR_KEYSTORE_FILE and TOMCAT_CONNECTOR_KEYSTORE_PASS with secret references?
             - name: TOMCAT_CONNECTOR_KEYSTORE_FILE
               value: '/etc/ssl/domain.p12'
             - name: TOMCAT_CONNECTOR_KEYSTORE_PASS

@@ -192,5 +192,8 @@ domain.crt
 NAME | CPU(cores) | CPU% | MEMORY(bytes) | MEMORY%
 --- | --- | ---| --- | ---
 aks-agentpool-36809342-vmss000000 | 215m | 5%| 12490Mi | 99%
+aks-agentpool-36809342-vmss000000 | 1281m | 33% | 4281Mi | 34%
+aks-agentpool-36809342-vmss000000 | 210m  | 5%  |  3853Mi | 30%
+aks-agentpool-36809342-vmss000000 | 1434m | 37% | 809Mi   | 54% 
 
 
