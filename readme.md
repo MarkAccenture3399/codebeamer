@@ -48,6 +48,8 @@ https://codebeamer.com/cb/wiki/86294#section-Change+System+Administrator%27s+Nam
 ## 0. Azure Resources
 - codebeamer-lau-rg
 - codebeamerACR
+- codebeamerstorageaccount
+- codebeamer-fs
 
 ## 1. Using Azure Container Instances (ACI)
 ### Create Azure context. 
@@ -179,8 +181,8 @@ domain.crt
 ### Check the persistance on host node
 - eg /home/appuser/codebeamer/repository/ directory for laurean.txt
 
-### Test CodeBeamer is working
-- curl -I http://localhost:9000
+### Test CodeBeamer is working from inside the pod
+- curl -I http://localhost:8090
 
 ### View nodes in your cluster along with their resource utilization
 - kubectl top nodes
