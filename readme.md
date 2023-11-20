@@ -196,4 +196,22 @@ aks-agentpool-36809342-vmss000000 | 1281m | 33% | 4281Mi | 34%
 aks-agentpool-36809342-vmss000000 | 210m  | 5%  |  3853Mi | 30%
 aks-agentpool-36809342-vmss000000 | 1434m | 37% | 809Mi   | 54% 
 
+### Other users
+- connect to aks instance locally
+  - az aks get-credentials --resource-group codebeamer-lau-rg --name codebeamer-aks
+- Copy files from/to pod
+  - kubectl cp <pod_name>:<file_path> <destination_path>
 
+# Troubleshoot Docker
+- stop and remove all the running services and volumes
+  - docker-compose down -v
+- completely remove volumes and cache
+  - docker system prune --volumes
+- pulls and creates the services again
+  - docker-compose up -d
+  - Deleted Networks: minikube
+- run mysql instance locally
+  - docker run -it -p 3306:3306 -e MYSQL_USER="user" -e MYSQL_PASSWORD="pass" -e MYSQL_DATABASE="codebeamer" -e MYSQL_ROOT_PASSWORD="password" -e MYSQL_MAX_ALLOWED_PACKET="1024M" -e MYSQL_INNODB_BUFFER_POOL_SIZE="1G" -e MYSQL_INNODB_LOG_FILE_SIZE="256M" -e MYSQL_INNODB_LOG_BUFFER_SIZE="256M" --mount type=bind,source="C:\codebeamer\codebeamer-db-data",destination=/var/lib/mysql intland/mysql:debian-8.0.32-utf8mb4
+- Error causing mysql container to stop: Failed to initialize DD Storage Engine
+  - delete and recreate the shared volume folder: 
+  - codebeamer-db-data
