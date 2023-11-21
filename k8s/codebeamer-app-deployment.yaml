@@ -39,7 +39,7 @@ spec:
               value: codebeamer-db:3306
             - name: WAIT_HOSTS_TIMEOUT
               value: "120"
-          image: intland/codebeamer:21.09-lts
+          image: intland/codebeamer:2.0.0.1
           name: codebeamer-app
           ports:
             - containerPort: 8090
