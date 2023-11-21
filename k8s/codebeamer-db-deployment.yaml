@@ -41,7 +41,10 @@ spec:
             - containerPort: 3306
               hostPort: 3306
               protocol: TCP
-          resources: {}
+          resources: 
+            limits:
+              memory: "1000Mi" # 1000 MB (min 563)
+              cpu: "100m" # 10% of CPU (min 13)
           volumeMounts:
             - mountPath: /var/lib/mysql
               name: codebeamer-db-mysql

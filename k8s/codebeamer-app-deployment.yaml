@@ -45,7 +45,10 @@ spec:
             - containerPort: 8090
               hostPort: 9000
               protocol: TCP
-          resources: {}
+          resources: 
+            limits:
+              memory: "5000Mi" # 5000 MB (min.3410)
+              cpu: "700m" # 70% of CPU (min.501)
           volumeMounts:
             - mountPath: /etc/ssl  # The mount path
               name: codebeamer-app-keystore
