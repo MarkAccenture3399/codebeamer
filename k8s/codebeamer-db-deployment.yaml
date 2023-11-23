@@ -43,8 +43,11 @@ spec:
               protocol: TCP
           resources: 
             limits:
-              memory: "1000Mi" # 1000 MB (min 563)
               cpu: "100m" # 10% of CPU (min 13)
+              memory: "1000Mi" # 1000 MB (min 563)             
+            requests:
+              cpu: "50m"
+              memory: "1000Mi"
           volumeMounts:
             - mountPath: /var/lib/mysql
               name: codebeamer-db-mysql

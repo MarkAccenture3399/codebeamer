@@ -201,6 +201,12 @@ aks-agentpool-36809342-vmss000000 | 1434m | 37% | 809Mi   | 54%
   - az aks get-credentials --resource-group codebeamer-lau-rg --name codebeamer-aks
 - Copy files from/to pod
   - kubectl cp <pod_name>:<file_path> <destination_path>
+  - kubectl cp codebeamer-app-bd848f5c7-9btlq:/home/appuser/codebeamer/logs/f34a42ea-b9ca-4b1b-b267-dcbdcf6ea2a1/logs/errors.txt errors.txt  
+  - kubectl cp codebeamer-app-bd848f5c7-9btlq:/home/appuser/codebeamer/logs/f34a42ea-b9ca-4b1b-b267-dcbdcf6ea2a1/logs logs                 
+
+### Create an alias
+- in Windows create an alias for kubectl using powershell:
+-  New-Alias -Name "k" kubectl
 
 # Troubleshoot Docker
 - stop and remove all the running services and volumes
