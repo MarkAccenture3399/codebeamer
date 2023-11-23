@@ -48,7 +48,10 @@ spec:
           resources: 
             limits:
               memory: "5000Mi" # 5000 MB (min.3410)
-              cpu: "700m" # 70% of CPU (min.501)
+              cpu: "5" # 5 CPU cores (min.501)
+            requests:
+              cpu: "2"
+              memory: "3500Mi"
           volumeMounts:
             - mountPath: /etc/ssl  # The mount path
               name: codebeamer-app-keystore
