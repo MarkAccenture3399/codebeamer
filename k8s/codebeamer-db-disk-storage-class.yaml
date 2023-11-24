@@ -1,0 +1,10 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: codebeamer-db-disk-storage-class # managed-csi
+provisioner: disk.csi.azure.com
+parameters:
+  skuname: Standard_LRS  # Choose the desired storage account type; currently shared disk only available with premium SSD
+  maxShares: "1"
+  cachingMode: None  # ReadOnly cache is not available for premium SSD with maxShares>1
+reclaimPolicy: Delete
