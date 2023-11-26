@@ -6,9 +6,9 @@ metadata:
   name: codebeamer-app-docs
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 100Mi
-  storageClassName: azurefile
+  storageClassName: my-azurefile
 status: {}

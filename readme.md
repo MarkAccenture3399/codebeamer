@@ -221,3 +221,10 @@ aks-agentpool-36809342-vmss000000 | 1434m | 37% | 809Mi   | 54%
 - Error causing mysql container to stop: Failed to initialize DD Storage Engine
   - delete and recreate the shared volume folder: 
   - codebeamer-db-data
+- Get the User ID and the Group ID for a user
+  - id -u root -> 0
+  - id -u appuser -> 1001
+  - id -g root -> 0
+  - id -g appuser -> 1001
+- Retrieve the list of folders together with details, including the owner
+  - ls -la
