@@ -228,3 +228,8 @@ aks-agentpool-36809342-vmss000000 | 1434m | 37% | 809Mi   | 54%
   - id -g appuser -> 1001
 - Retrieve the list of folders together with details, including the owner
   - ls -la
+- Download logs from container
+  - cp codebeamer-app-bd848f5c7-9btlq:/home/appuser/codebeamer/logs/f34a42ea-b9ca-4b1b-b267-dcbdcf6ea2a1/logs logs
+  - kubectl cp codebeamer-app-bd848f5c7-9btlq:/home/appuser/codebeamer/logs/f34a42ea-b9ca-4b1b-b267-dcbdcf6ea2a1/logs/errors.txt errors.txt
+- Create a terminal alias, for the duration of the window
+  - New-Alias -Name "k" kubectl 
