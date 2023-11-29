@@ -208,6 +208,15 @@ aks-agentpool-36809342-vmss000000 | 1434m | 37% | 809Mi   | 54%
 - in Windows create an alias for kubectl using powershell:
 -  New-Alias -Name "k" kubectl
 
+### Using a privater registry
+- kubectl create secret docker-registry regcred --docker-server=YOUR_REGISTRY_SERVER --docker-username=YOUR_REGISTRY_USERNAME --docker-password=YOUR_REGISTRY_PASSWORD --docker-email=YOUR_EMAIL
+- kubectl delete secret <SECRET_NAME>
+- kubectl create secret docker-registry codebeamer-regcred --docker-server=codebeameracr.azurecr.io --docker-username=codebeamerACR --docker-password=KBKLvDMqZhh2U25APlPDAEpVPd1Z/fRFBF2HRvGXYU+ACRCk9Ql/ 
+- kubectl delete secret codebeamer-regcred
+
+### Run a command in a pod, by modifying the deployment yaml file
+- command: ["sh", "-c", "cp -r /source_folder/. /destination_folder"]
+          
 # Troubleshoot Docker
 - stop and remove all the running services and volumes
   - docker-compose down -v
@@ -233,3 +242,9 @@ aks-agentpool-36809342-vmss000000 | 1434m | 37% | 809Mi   | 54%
   - kubectl cp codebeamer-app-bd848f5c7-9btlq:/home/appuser/codebeamer/logs/f34a42ea-b9ca-4b1b-b267-dcbdcf6ea2a1/logs/errors.txt errors.txt
 - Create a terminal alias, for the duration of the window
   - New-Alias -Name "k" kubectl 
+- Download customization from container
+  - kubectl cp codebeamer-app-697c6758c5-p682x:/home/appuser/codebeamer/repository/config/customization/js js
+- Start CB
+  -./startup
+- List processes
+  - ps aux

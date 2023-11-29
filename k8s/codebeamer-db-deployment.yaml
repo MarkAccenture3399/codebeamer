@@ -35,7 +35,7 @@ spec:
               value: password
             - name: MYSQL_USER
               value: user
-          image: intland/mysql:debian-8.0.34-utf8mb4
+          image: codebeameracr.azurecr.io/codebeamer-db # intland/mysql:debian-8.0.34-utf8mb4
           name: codebeamer-db
           ports:
             - containerPort: 3306
@@ -51,6 +51,8 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/mysql
               name: codebeamer-db-mysql
+      imagePullSecrets:
+        - name: codebeamer-regcred
       restartPolicy: Always
       volumes:
         - name: codebeamer-db-mysql
