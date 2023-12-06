@@ -1,11 +1,3 @@
-# Copyright by Intland Software, https://www.intland.com
-#
-# All rights reserved.
-#
-# Please note that if you change this docker file, we do not take any responsibility and we are not liable for
-# any damage caused through use of this image, be it indirect, special, incidental
-# or consequential damages (including but not limited to damages for loss of business, loss of profits, interruption or the like).
-
 version: '2.1'
 
 services:
@@ -28,7 +20,7 @@ services:
 
 
   codebeamer-app:
-    image: intland/codebeamer:2.0.0.1 #intland/codebeamer:22.04-SP7 #codebeameracr.azurecr.io/codebeamer-app  #intland/codebeamer:21.09-lts
+    image: intland/codebeamer:2.0.0.2 #intland/codebeamer:22.04-SP7 #codebeameracr.azurecr.io/codebeamer-app  #intland/codebeamer:21.09-lts
     ports:
       - 9000:8090
     environment:
@@ -44,11 +36,11 @@ services:
       - JVM_OPTIONS= -Djdk.tls.ephemeralDHKeySize=4096
     volumes:
       - ./ssl/keystore.p12:/home/appuser/ssl/keystore.p12
-      - C:\codebeamer\codebeamer-app-logo:/home/appuser/codebeamer/repository/config/logo
-      - C:\codebeamer\codebeamer-app-repository-docs:/home/appuser/codebeamer/repository/docs
-      - C:\codebeamer\codebeamer-app-repository-search:/home/appuser/codebeamer/repository/search
-      - C:\codebeamer\codebeamer-app-logs:/home/appuser/codebeamer/logs
-      - C:\codebeamer\codebeamer-app-tmp:/home/appuser/codebeamer/tomcat/tmp
+      - ./codebeamer-app-logo:/home/appuser/codebeamer/repository/config/logo
+      - ./codebeamer-app-repository-docs:/home/appuser/codebeamer/repository/docs
+      - ./codebeamer-app-repository-search:/home/appuser/codebeamer/repository/search
+      - ./codebeamer-app-logs:/home/appuser/codebeamer/logs
+      - ./codebeamer-app-tmp:/home/appuser/codebeamer/tomcat/tmp
     links:
       - codebeamer-db:container-mysql
 

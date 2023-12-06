@@ -248,3 +248,4 @@ aks-agentpool-36809342-vmss000000 | 1434m | 37% | 809Mi   | 54%
   -./startup
 - List processes
   - ps aux
+  - ps aux | grep 'R'

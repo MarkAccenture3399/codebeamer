@@ -39,8 +39,20 @@ spec:
               value: codebeamer-db:3306
             - name: WAIT_HOSTS_TIMEOUT
               value: "120"
-          image: intland/codebeamer:2.0.0.1
+          image: codebeameracr.azurecr.io/codebeamer-app # intland/codebeamer:2.0.0.2
           name: codebeamer-app
+          #command: ["sh", "-c", "cp -r /home/appuser/codebeamer/repository/config/logo/js/. /home/appuser/codebeamer/repository/config/customization/js"]
+          # command: ["/bin/sh", "-c"]
+          # args:
+          #   - |
+          #     #!/bin/sh
+          #     #./run.sh
+          #     #until [ -d "/home/appuser/codebeamer/repository/config/logo/js" ] && [ -d "/home/appuser/codebeamer/repository/config/customization/js" ]; do sleep 1; done
+          #     #cp -r /home/appuser/codebeamer/repository/config/logo/js/. /home/appuser/codebeamer/repository/config/customization/js
+          #     #cp -r /home/appuser/codebeamer/repository/config/logo/cb/. /home/appuser/codebeamer/bin
+          #     #./stop
+          #     echo "Copying completed"
+          #     # Add more commands here if needed
           ports:
             - containerPort: 8090
               hostPort: 9000
@@ -65,6 +77,12 @@ spec:
               name: codebeamer-app-logs-volume
             - mountPath: /home/appuser/codebeamer/tomcat/tmp
               name: codebeamer-app-tomcat
+          # lifecycle:
+          #   postStart:
+          #     exec:
+          #       command: ["/bin/sh", "-c", "sleep 5"]  # Give some time for volumes to mount
+      imagePullSecrets:
+        - name: codebeamer-regcred
       restartPolicy: Always
       volumes:
         - name: codebeamer-app-keystore
