@@ -153,6 +153,8 @@ domain.crt
 [convert]::ToBase64String((Get-Content -path "domain.key" -Encoding byte))
 
 ### Create a Kubernetes Secret
+- kubectl create secret generic <secret_name> --from-literal=key1=value1 --from-literal=key2=value2
+- kubectl create secret generic <secret_name> --from-file=<path_to_file>
 - kubectl create secret generic example-secret \
   --from-file=example.crt=path/to/encoded/certificate.crt \
   --from-file=example.key=path/to/encoded/key.key
@@ -249,3 +251,17 @@ aks-agentpool-36809342-vmss000000 | 1434m | 37% | 809Mi   | 54%
 - List processes
   - ps aux
   - ps aux | grep 'R'
+
+# Deploy to new AKS cluster
+- az aks get-credentials --resource-group codebeamer-rg --name aks-new
+- kubectl get nodes
+- kubectl create secret docker-registry codebeamer-regcred --docker-server=codebeameracr.azurecr.io --docker-username=codebeamerACR --docker-password=KBKLvDMqZhh2U25APlPDAEpVPd1Z/fRFBF2HRvGXYU+ACRCk9Ql/
+- kubectl create secret generic codebeamer-certificate --from-file=.\ssl\keystore.p12
+- kubectl get secrets
+- kubectl get secret codebeamer-certificate -o yaml
+- kubectl apply -f .\k8s\ers\laurean.gheorghiu\work\k8s\codebeamer>
+- kubectl exec -it codebeamer-app-769579897b-2d6z6  -n default -- sh
+- cd codebeamer/bin
+- ./status should return something like: codebeamer (pid: 894) is running
+
+# Create new AKS cluster with properly configured subnet and NSG 

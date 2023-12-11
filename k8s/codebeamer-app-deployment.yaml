@@ -87,9 +87,9 @@ spec:
       volumes:
         - name: codebeamer-app-keystore
           secret:
-            secretName: codebeamer-app-certificate-secret
+            secretName: codebeamer-certificate
             items:
-              - key: domain.p12
+              - key: keystore.p12
                 path: domain.p12
         - name: codebeamer-app-logo
           persistentVolumeClaim:
