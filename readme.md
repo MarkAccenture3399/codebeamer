@@ -54,7 +54,7 @@ https://codebeamer.com/cb/wiki/86294#section-Change+System+Administrator%27s+Nam
 ## 1. Using Azure Container Instances (ACI)
 ### Create Azure context. 
 - This context associates Docker with an Azure subscription and resource group 
-- docker login azure --tenant-id 2f075e73-4163-45e2-a1a9-b702c43b8701
+- docker login azure --tenant-id <your tenant id>
 - docker context create aci codebeamer_aci_context
 
 ### View current context
@@ -265,3 +265,58 @@ aks-agentpool-36809342-vmss000000 | 1434m | 37% | 809Mi   | 54%
 - ./status should return something like: codebeamer (pid: 894) is running
 
 # Create new AKS cluster with properly configured subnet and NSG 
+
+- create a vnet with a cluster subnet, then an aks using that vnet and subnet.
+- create a NSG
+- kubectl config get-contexts
+- kubectl config use-context aks-new
+- kubectl get nodes
+- kubectl create secret docker-registry codebeamer-regcred --docker-server=codebeameracr.azurecr.io --docker-username=codebeamerACR --docker-password=KBKLvDMqZhh2U25APlPDAEpVPd1Z/fRFBF2HRvGXYU+ACRCk9Ql/
+- kubectl create secret generic codebeamer-certificate --from-file=.\ssl\keystore.p12
+- kubectl get secrets
+- az aks get-credentials --resource-group codebeamer-lau-rg --name codebeamer-aks-01
+- New-AzAksCluster -ResourceGroupName codebeamer-lau-rg -Name codebeamer-lau-aks -NetworkPlugin 
+kubenet -NodeVnetSubnetID codebeamer-lau-subnet
+
+## Troubleshoot MySQL pod
+- kubectl describe pod/codebeamer-db-7b99c46d44-fwt46
+- - Reason:       OOMKilled
+- cat /etc/os-release
+- Debian 11
+- here https://codebeamer.com/cb/wiki/5562876#section-How+to+add+%28or+override%29+files+to+the+docker+images it mentions the image is based on OpenShift RHE but there isn't any Debian version there.
+- here the Docker image: https://hub.docker.com/layers/intland/mysql/debian-8.0.34-utf8mb4/images/sha256-83e8fe00c25653513a6c66ee7546b26361a5bea88c98f9097e0182a7ba67b8a9?context=explore
+- copy /etc/mysql/ 
+- copy /usr/local/bin/ 
+- cat docker-entrypoint.sh
+- copy /docker-entrypoint-initdb.d
+
+# Connect to MySQL
+- mysql -u root -p
+- mysql -h localhost -u user -p codebeamer
+- mysql -u user -ppassword codebeamer
+- mysql -u user -p codebeamer
+- mysql -u root
+- SHOW SCHEMAS;
+- show databases;
+- create database lau;
+
+- kubectl delete -f .\k8s\codebeamer-db-service.yaml
+- kubectl delete -f .\k8s\codebeamer-db-deployment.yaml
+- kubectl delete -f .\k8s\codebeamer-db-mysql-pvc.yaml
+- kubectl delete -f .\k8s\codebeamer-db-standard-ssd-class.yaml
+
+- kubectl apply -f .\k8s\codebeamer-db-standard-ssd-class.yaml
+- kubectl apply -f .\k8s\codebeamer-db-mysql-pvc.yaml
+- kubectl apply -f .\k8s\codebeamer-db-service.yaml
+- kubectl apply -f .\k8s\codebeamer-db-deployment.yaml
+
+-  cd docker-entrypoint-initdb.d
+/tmp/mysql-data/$MYSQL_INIT_FILENAME
+/var/lib/mysql
+cp codebeamer-app-bd848f5c7-9btlq:/home/appuser/codebeamer/logs/f34a42ea-b9ca-4b1b-b267-dcbdcf6ea2a1/logs logs
+cd var/lib/mysql/data
+
+
+- kubectl exec -it codebeamer-db-84db85b44f-mfnbt  -n default -- sh
+- mysql -u root (only one that worker on v34)
+- mysql -u user -p (worked on v23 with pass)

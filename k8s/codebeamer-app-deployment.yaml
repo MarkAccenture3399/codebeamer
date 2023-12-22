@@ -39,7 +39,7 @@ spec:
               value: codebeamer-db:3306
             - name: WAIT_HOSTS_TIMEOUT
               value: "120"
-          image: codebeameracr.azurecr.io/codebeamer-app # intland/codebeamer:2.0.0.2
+          image: codebeameracr.azurecr.io/codebeamer-app:2 # intland/codebeamer:2.0.0.2
           name: codebeamer-app
           #command: ["sh", "-c", "cp -r /home/appuser/codebeamer/repository/config/logo/js/. /home/appuser/codebeamer/repository/config/customization/js"]
           # command: ["/bin/sh", "-c"]

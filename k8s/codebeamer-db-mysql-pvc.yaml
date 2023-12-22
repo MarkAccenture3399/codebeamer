@@ -6,9 +6,9 @@ metadata:
   name: codebeamer-db-mysql
 spec:
   accessModes:
-    - ReadWriteOnce # ReadWriteMany
-  storageClassName: codebeamer-db-disk-storage-class
+    - ReadWriteOnce
+  storageClassName: codebeamer-db-standard-ssd-class
   resources:
     requests:
-      storage: 100Mi 
+      storage: 1Gi
 status: {}

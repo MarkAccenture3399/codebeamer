@@ -1,0 +1,8 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: codebeamer-db-standard-ssd-class
+provisioner: kubernetes.io/azure-disk
+parameters:
+  storageaccounttype: StandardSSD_LRS 
+reclaimPolicy: Delete

@@ -35,7 +35,7 @@ spec:
               value: password
             - name: MYSQL_USER
               value: user
-          image: codebeameracr.azurecr.io/codebeamer-db:1 # codebeameracr.azurecr.io/codebeamer-db # intland/mysql:debian-8.0.34-utf8mb4
+          image: codebeameracr.azurecr.io/codebeamer-db # intland/mysql:debian-8.0.34-utf8mb4 # intland/mysql:debian-8.0.23-utf8mb4
           name: codebeamer-db
           ports:
             - containerPort: 3306
@@ -44,10 +44,10 @@ spec:
           resources: 
             limits:
               cpu: "100m" # 10% of CPU (min 13)
-              memory: "1000Mi" # 1000 MB (min 563)             
+              memory: "2Gi" # 2000 MB (min 563)             
             requests:
               cpu: "50m"
-              memory: "1000Mi"
+              memory: "2Gi"
           volumeMounts:
             - mountPath: /var/lib/mysql
               name: codebeamer-db-mysql
