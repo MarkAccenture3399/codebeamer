@@ -279,7 +279,11 @@ aks-agentpool-36809342-vmss000000 | 1434m | 37% | 809Mi   | 54%
 kubenet -NodeVnetSubnetID codebeamer-lau-subnet
 
 ## Troubleshoot MySQL pod
+- kubectl config get-contexts
+- kubectl config use-context codebeamer-aks-01
 - kubectl describe pod/codebeamer-db-7b99c46d44-fwt46
+- change to latest db image: codebeameracr.azurecr.io/codebeamer-db:3
+- kubectl apply -f .\k8s\codebeamer-db-deployment.yaml
 - - Reason:       OOMKilled
 - cat /etc/os-release
 - Debian 11

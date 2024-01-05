@@ -18,7 +18,8 @@ spec:
         io.kompose.service: codebeamer-app
     spec:
       containers:
-        - env:
+        - name: codebeamer-app
+          env:
             - name: CB_database_JDBC_ConnectionURL
               value: jdbc:mysql://codebeamer-db:3306/codebeamer?autoReconnect=true&zeroDateTimeBehavior=convertToNull&emulateLocators=true&characterEncoding=UTF-8&useSSL=false
             - name: CB_database_JDBC_Driver
@@ -40,7 +41,6 @@ spec:
             - name: WAIT_HOSTS_TIMEOUT
               value: "120"
           image: codebeameracr.azurecr.io/codebeamer-app:2 # intland/codebeamer:2.0.0.2
-          name: codebeamer-app
           #command: ["sh", "-c", "cp -r /home/appuser/codebeamer/repository/config/logo/js/. /home/appuser/codebeamer/repository/config/customization/js"]
           # command: ["/bin/sh", "-c"]
           # args:

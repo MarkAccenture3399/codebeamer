@@ -18,7 +18,8 @@ spec:
         io.kompose.service: codebeamer-db
     spec:
       containers:
-        - env:
+        - name: codebeamer-db
+          env:
             - name: MYSQL_DATABASE
               value: codebeamer
             - name: MYSQL_INNODB_BUFFER_POOL_SIZE
@@ -36,7 +37,7 @@ spec:
             - name: MYSQL_USER
               value: user
           image: codebeameracr.azurecr.io/codebeamer-db # intland/mysql:debian-8.0.34-utf8mb4 # intland/mysql:debian-8.0.23-utf8mb4
-          name: codebeamer-db
+          
           ports:
             - containerPort: 3306
               hostPort: 3306

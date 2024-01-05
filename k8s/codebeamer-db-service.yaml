@@ -11,4 +11,4 @@ spec:
       targetPort: 3306
   selector:
     io.kompose.service: codebeamer-db
-  type: LoadBalancer
+  #type: LoadBalancer
