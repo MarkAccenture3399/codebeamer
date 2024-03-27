@@ -1,0 +1,37 @@
+<mxfile host="65bd71144e">
+    <diagram id="NpJH77RFVWROeowFY9IR" name="Page-1">
+        <mxGraphModel dx="842" dy="749" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#FFFFFF" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="17" value="" style="group;fillColor=#3399FF;strokeColor=#10739e;" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="60" y="30" width="160" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillStyle=auto;strokeWidth=4;fillColor=none;gradientColor=#FF33FF;" parent="17" vertex="1">
+                    <mxGeometry width="160" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="Master process" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillStyle=auto;fillColor=#bac8d3;strokeWidth=4;strokeColor=none;" parent="17" vertex="1">
+                    <mxGeometry x="10" y="20" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="...&lt;br&gt;Master process" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillStyle=auto;fillColor=#bac8d3;strokeWidth=4;strokeColor=none;" parent="17" vertex="1">
+                    <mxGeometry x="10" y="70" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="Worker process" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillStyle=auto;fillColor=#bac8d3;strokeWidth=4;strokeColor=none;" parent="17" vertex="1">
+                    <mxGeometry x="10" y="120" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="...&lt;br&gt;Worker process" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillStyle=auto;fillColor=#bac8d3;strokeWidth=4;strokeColor=none;" parent="17" vertex="1">
+                    <mxGeometry x="10" y="170" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="" style="sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];verticalLabelPosition=bottom;align=center;verticalAlign=top;shape=mxgraph.kubernetes.icon;prIcon=master;labelBackgroundColor=none;fillStyle=auto;strokeWidth=4;" parent="17" vertex="1">
+                    <mxGeometry x="100" y="222" width="50" height="48" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="Node" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillStyle=auto;strokeWidth=4;fillColor=none;strokeColor=none;" parent="17" vertex="1">
+                    <mxGeometry x="30" y="236" width="70" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="&lt;font color=&quot;#3399ff&quot;&gt;Minikube cluster&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="80" y="310" width="120" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
