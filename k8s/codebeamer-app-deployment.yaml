@@ -18,12 +18,11 @@ spec:
         io.kompose.service: codebeamer-app
     spec:
       containers:
-        - name: codebeamer-app
-          env:
+        - env:
             - name: CB_database_JDBC_ConnectionURL
-              value: jdbc:mysql://codebeamer-db:3306/codebeamer?autoReconnect=true&zeroDateTimeBehavior=convertToNull&emulateLocators=true&characterEncoding=UTF-8&useSSL=false
+              value: jdbc:postgresql://codebeamer-db:5432/codebeamer?autoReconnect=true&zeroDateTimeBehavior=convertToNull&emulateLocators=true&characterEncoding=UTF-8&useSSL=false
             - name: CB_database_JDBC_Driver
-              value: com.mysql.jdbc.Driver
+              value: org.postgresql.Driver
             - name: CB_database_JDBC_Password
               value: pass
             - name: CB_database_JDBC_Timeout
@@ -31,16 +30,17 @@ spec:
             - name: CB_database_JDBC_Username
               value: user
             - name: JVM_OPTIONS
-              value: ' -Djdk.tls.ephemeralDHKeySize=4096'
+              value: " -Djdk.tls.ephemeralDHKeySize=4096"
             - name: TOMCAT_CONNECTOR_KEYSTORE_FILE
-              value: '/etc/ssl/domain.p12'
+              value: "/etc/ssl/domain.p12"
             - name: TOMCAT_CONNECTOR_KEYSTORE_PASS
-              value: 'Swqa1234!'           
+              value: "Swqa1234!"
             - name: WAIT_HOSTS
-              value: codebeamer-db:3306
+              value: codebeamer-db:5432
             - name: WAIT_HOSTS_TIMEOUT
               value: "120"
-          image: codebeameracr.azurecr.io/codebeamer-app:2 # intland/codebeamer:2.0.0.2
+          image: codebeameracr.azurecr.io/codebeamerapp:9
+          name: codebeamer-app
           #command: ["sh", "-c", "cp -r /home/appuser/codebeamer/repository/config/logo/js/. /home/appuser/codebeamer/repository/config/customization/js"]
           # command: ["/bin/sh", "-c"]
           # args:
@@ -57,7 +57,7 @@ spec:
             - containerPort: 8090
               hostPort: 9000
               protocol: TCP
-          resources: 
+          resources:
             limits:
               memory: "5000Mi" # 5000 MB (min.3410)
               cpu: "5" # 5 CPU cores (min.501)
@@ -65,7 +65,7 @@ spec:
               cpu: "2"
               memory: "3500Mi"
           volumeMounts:
-            - mountPath: /etc/ssl  # The mount path
+            - mountPath: /etc/ssl # The mount path
               name: codebeamer-app-keystore
             - mountPath: /home/appuser/codebeamer/repository/config/logo
               name: codebeamer-app-logo

@@ -6,9 +6,9 @@ metadata:
   name: codebeamer-db
 spec:
   ports:
-    - name: "3306"
-      port: 3306
-      targetPort: 3306
+    - name: "5432"
+      port: 5432
+      targetPort: 5432
   selector:
     io.kompose.service: codebeamer-db
-  #type: LoadBalancer
+  type: ClusterIP

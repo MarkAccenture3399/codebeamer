@@ -18,45 +18,36 @@ spec:
         io.kompose.service: codebeamer-db
     spec:
       containers:
-        - name: codebeamer-db
-          env:
-            - name: MYSQL_DATABASE
+        - env:
+            - name: POSTGRESQL_DATABASE
               value: codebeamer
-            - name: MYSQL_INNODB_BUFFER_POOL_SIZE
-              value: 1G
-            - name: MYSQL_INNODB_LOG_BUFFER_SIZE
-              value: 256M
-            - name: MYSQL_INNODB_LOG_FILE_SIZE
-              value: 256M
-            - name: MYSQL_MAX_ALLOWED_PACKET
-              value: 1024M
-            - name: MYSQL_PASSWORD
+            - name: POSTGRESQL_PASSWORD
               value: pass
-            - name: MYSQL_ROOT_PASSWORD
+            - name: POSTGRESQL_ROOT_PASSWORD
               value: password
-            - name: MYSQL_USER
+            - name: POSTGRESQL_USER
               value: user
-          image: codebeameracr.azurecr.io/codebeamer-db # intland/mysql:debian-8.0.34-utf8mb4 # intland/mysql:debian-8.0.23-utf8mb4
-          
+          image: intland/postgres:debian-12.6.3
+          name: codebeamer-db
           ports:
-            - containerPort: 3306
-              hostPort: 3306
+            - containerPort: 5432
+              hostPort: 5432
               protocol: TCP
-          resources: 
+          resources:
             limits:
               cpu: "100m" # 10% of CPU (min 13)
-              memory: "2Gi" # 2000 MB (min 563)             
+              memory: "2Gi" # 2000 MB (min 563)
             requests:
               cpu: "50m"
               memory: "2Gi"
           volumeMounts:
-            - mountPath: /var/lib/mysql
-              name: codebeamer-db-mysql
+            - mountPath: /var/lib/postgresql
+              name: codebeamer-db-postgresql
       imagePullSecrets:
         - name: codebeamer-regcred
       restartPolicy: Always
       volumes:
-        - name: codebeamer-db-mysql
+        - name: codebeamer-db-postgresql
           persistentVolumeClaim:
-            claimName: codebeamer-db-mysql
+            claimName: codebeamer-db-postgresql
 status: {}

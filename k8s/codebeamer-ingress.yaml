@@ -4,23 +4,23 @@ metadata:
   name: codebeamer-ingress
 spec:
   rules:
-  - host: codebeamer-app.minikube.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: codebeamer-app
-            port: 
-              number: 9000
-  - host: codebeamer-db.minikube.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: codebeamer-db
-            port: 
-              number: 3306
+    - host: codebeamer-app.minikube.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: codebeamer-app
+                port:
+                  number: 9000
+    - host: codebeamer-db.minikube.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: codebeamer-db
+                port:
+                  number: 5432

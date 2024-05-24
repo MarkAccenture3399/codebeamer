@@ -1,49 +1,51 @@
+# Copyright by Intland Software, https://www.intland.com
+#
+# All rights reserved.
+#
+# Please note that if you change this docker file, we do not take any responsibility and we are not liable for
+# any damage caused through use of this image, be it indirect, special, incidental
+# or consequential damages (including but not limited to damages for loss of business, loss of profits, interruption or the like).
+
 version: '2.1'
 
 services:
+
   codebeamer-db:
-    image: intland/mysql:debian-8.0.34-utf8mb4 #intland/mysql:debian-8.0.32-utf8mb4 #codebeameracr.azurecr.io/codebeamer-db 
+    image: intland/postgres:debian-12.6.3
     environment:
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=pass
-      - MYSQL_DATABASE=codebeamer
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_MAX_ALLOWED_PACKET=1024M
-      - MYSQL_INNODB_BUFFER_POOL_SIZE=1G
-      - MYSQL_INNODB_LOG_FILE_SIZE=256M
-      - MYSQL_INNODB_LOG_BUFFER_SIZE=256M
+      - POSTGRESQL_USER=user
+      - POSTGRESQL_PASSWORD=pass
+      - POSTGRESQL_DATABASE=codebeamer
+      - TZ=UTC
     volumes:
-      - C:\codebeamer\codebeamer-db-data:/var/lib/mysql
-    ports:
-      - "3306:3306"  # Expose the MySQL port to the outside
-
-
+      - codebeamer-db-data:/var/lib/postgresql/data
+    networks:
+      - cb
 
   codebeamer-app:
-    image: intland/codebeamer:2.0.0.2 #intland/codebeamer:22.04-SP7 #codebeameracr.azurecr.io/codebeamer-app  #intland/codebeamer:21.09-lts
+    image: intland/codebeamer
     ports:
-      - 9000:8090
+      - 9000:8080
     environment:
-      - WAIT_HOSTS=container-mysql:3306
+      - DEBUG=false
+      - TZ=Europe/Berlin
+      - WAIT_HOSTS=codebeamer-db:5432
       - WAIT_HOSTS_TIMEOUT=120
-      - CB_database_JDBC_Username=user
-      - CB_database_JDBC_Password=pass
-      - CB_database_JDBC_Driver=com.mysql.jdbc.Driver
-      - CB_database_JDBC_ConnectionURL=jdbc:mysql://container-mysql:3306/codebeamer?autoReconnect=true&zeroDateTimeBehavior=convertToNull&emulateLocators=true&characterEncoding=UTF-8&useSSL=false
-      - CB_database_JDBC_Timeout=120
-      - TOMCAT_CONNECTOR_KEYSTORE_FILE=/home/appuser/ssl/keystore.p12
-      - TOMCAT_CONNECTOR_KEYSTORE_PASS=Swqa1234!
-      - JVM_OPTIONS= -Djdk.tls.ephemeralDHKeySize=4096
+      - "CB_database_JDBC_Username=user"
+      - "CB_database_JDBC_Password=pass"
+      - "CB_database_JDBC_Driver=org.postgresql.Driver"
+      - "CB_database_JDBC_ConnectionURL=jdbc:postgresql://codebeamer-db:5432/codebeamer"
     volumes:
-      - ./ssl/keystore.p12:/home/appuser/ssl/keystore.p12
-      - ./codebeamer-app-logo:/home/appuser/codebeamer/repository/config/logo
-      - ./codebeamer-app-repository-docs:/home/appuser/codebeamer/repository/docs
-      - ./codebeamer-app-repository-search:/home/appuser/codebeamer/repository/search
-      - ./codebeamer-app-logs:/home/appuser/codebeamer/logs
-      - ./codebeamer-app-tmp:/home/appuser/codebeamer/tomcat/tmp
-    links:
-      - codebeamer-db:container-mysql
+      - codebeamer-app-logo:/home/appuser/codebeamer/repository/config/logo
+      - codebeamer-app-repository-docs:/home/appuser/codebeamer/repository/docs
+      - codebeamer-app-repository-search:/home/appuser/codebeamer/repository/search
+      - codebeamer-app-logs:/home/appuser/codebeamer/logs
+      - codebeamer-app-tmp:/home/appuser/codebeamer/tomcat/tmp
+    networks:
+      - cb
 
+networks:
+  cb:
 
 volumes:
   codebeamer-db-data:
